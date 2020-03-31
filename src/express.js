@@ -17,7 +17,7 @@ const client = new Client({
 
 client.connect();
 
-app.set('view engine', 'pug')
+app.set('##', 'pug')
 app.set('views', path.join(__dirname, 'views/'))
 
 app.use(express.urlencoded({ extended: true }));

@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+const html =
+    `<!DOCTYPE html>
 
 <head>
-    <title>Form Visitor</title>
+    <title>Visitor Form</title>
+    <link rel="stylesheet" href="http://localhost:1221/src/visitorform.css">
 </head>
 
 <body>
@@ -22,4 +24,5 @@
     </form>
 </body>
 
-</html>
+</html>`
+module.exports = html;
