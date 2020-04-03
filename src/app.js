@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-// Database
+//
 const addNewVisitor = require('./database');
 
 // Create app
@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use('/new_visit', express.static('public'));
+app.use('/new_visit', express.static('form'));
 
 // Template engine
 app.set('view engine', 'pug');
@@ -37,6 +37,6 @@ app.post('/new_visit', async (req, res) => {
 	return res.render('success', { data: visitor[0] });
 });
 
-const server = app.listen(3000, () => console.log('Express Server is running on Port: 3000'));
+const server = app.listen(3232, () => console.log('Express listening to this Port: 3232'));
 
 module.exports = server;
