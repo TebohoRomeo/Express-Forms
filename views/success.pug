@@ -1,0 +1,17 @@
+doctype html
+head
+	title Express Application
+	link(rel='stylesheet' type='text/css' href='css/style.css')
+	body
+		.container
+			.header
+				h1 THANK YOU!
+			.body
+				.group 
+					.output= 'ID: '+ data.id 
+					.output= 'Visitors Name: '+ data.name 
+					.output= 'Age: '+ data.age
+					.output= 'Date of visit: '+ data.date_of_visit.toLocaleDateString()
+					.output= 'Time of visit: '+ data.time_of_visit
+					.output= 'Assistant: '+ data.assistant
+					.output= 'Comment: '+ data.comments
