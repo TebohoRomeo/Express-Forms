@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 const port = 5200;
-const { Client } = require("pg");
+const { Client } = require('pg');
 const client = new Client({
   user: "user",
   host: "localhost",
@@ -20,7 +20,7 @@ client.connect();
 
 
 app.set('view engine', 'pug')
-// app.set('views', path.join(__dirname, '/views')); 
+app.set('views', path.join(__dirname, 'views/')); 
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -66,7 +66,7 @@ const addNewVisitor = async(name, assistant_name, age, visit_date, visit_time, c
 
 app.post('/addnew_visit', async(req, res) => {
     let record = await addNewVisitor(req.body.visitorName, req.body.assistentName, req.body.age, req.body.date, req.body.time, req.body.comments)
-    res.render('', {//Express.pug
+    res.render('Express.pug', {
         VisitorID: record[0].visitorid,
         visitorName: record[0].visitorname,
         asistentName: record[0].asssistantname,

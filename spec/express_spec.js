@@ -1,41 +1,49 @@
-describe("Testing express end points", () => {
+const axios = require('axios');
+const readline = require('readline'); 
 
-	const axios = require('axios');
-	const readline = require('readline');
+let server;
 
-	const form = require('./forms');
-	const success = require('./form_succeess');
 
-	it('Should render form', async () => {
-		const res = await axios.get('http://127.0.0.1:3232/new_visit');
+describe('express new_visit endpoint', () => {
+    beforeEach(() => {
+        server = require('../src/express');
+    });
 
-		expect(res.data).toEqual(form);
-	});
+    afterEach(() => {
+        server.close();
+    });
 
-	it('Should show the form', async () => {
+    const fixture = require('./fixture');
 
-		const visitor = {
-			name: 'Thabo Mayika',
-			age: 22,
-			date: '11/09/2019',
-			time: '12:00:00',
-			assistant: 'Romeo',
-			comments: 'No Comment'
-		}
+    it('should return an html form', async(done) => {
+        try {
+            const html = await axios.get("http://localhost:5200/new_visit");
+            expect(html.data).toEqual(fixture);
+        } catch (err) {
+            console.log(err);
+        }
 
-		const res = await axios.post('http://127.0.0.1:3232/new_visit', visitor);
+        done();
+    });
+});
 
-		// let id = res.data.match(/\d+/g)[2];
+describe('express addnew_visit endpoint', () => {
+    beforeEach(() => {
+        server = require('../src/express');
+    });
 
-		expect(res.data).toEqual(success(
-				id,
-				visitor.name,
-				visitor.age,
-				visitor.date,
-				visitor.time,
-				visitor.assistant,
-				visitor.comments
-			));	
-	});
+    afterEach(() => {
+        server.close();
+    });
 
+    it('should submit and save the form data to a database', async(done) => {
+        try {
+            const html = await axios.get("http://localhost:5200/addnew_visit");
+            expect(html.data).toEqual(fixture2);
+        } catch (err) {
+            console.log(err);
+        }
+
+        done();
+    });
 });
